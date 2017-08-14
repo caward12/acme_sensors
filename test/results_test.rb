@@ -3,9 +3,10 @@ require_relative '../lib/results'
 
 class ResultsTest < Minitest::Test
   def test_it_has_files_from_directory
-    results = Results.new("turing/jobs/acme_sensors/data")
+    current_dir = Dir.pwd #users current working directory
+    results = Results.new("#{current_dir.split(Dir.home)[1]}/data") #pass in directory path from root
 
-    assert_equal ["/Users/colleenward/turing/jobs/acme_sensors/data/hygrol.csv", "/Users/colleenward/turing/jobs/acme_sensors/data/mix.csv", "/Users/colleenward/turing/jobs/acme_sensors/data/therml.csv"], results.files
+    assert_equal 3, results.files.count
   end
 
 end
