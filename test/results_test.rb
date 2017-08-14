@@ -9,4 +9,10 @@ class ResultsTest < Minitest::Test
     assert_equal 3, results.files.count
   end
 
+  def test_it_knows_when_there_are_no_files
+    current_dir = Dir.pwd #users current working directory
+    results = Results.new("#{current_dir.split(Dir.home)[1]}/lib")
+
+    assert results.files.empty?
+  end
 end
